@@ -1,5 +1,7 @@
 import 'package:awesome_app/pages/home_page.dart';
+import 'package:awesome_app/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   static const String routeName = "/login";
@@ -65,11 +67,13 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           ElevatedButton(
                             onPressed: () {
+                              Constants.prefs?.setBool("LoggedIn", true);
                               //Navigator.push(
                               //    context,
                               //    MaterialPageRoute(
                               //        builder: (context) => HomePage()));
-                              Navigator.pushNamed(context, HomePage.routeName);
+                              Navigator.pushReplacementNamed(
+                                  context, HomePage.routeName);
                             },
                             child: Text("Sign In"),
                             style: ElevatedButton.styleFrom(
